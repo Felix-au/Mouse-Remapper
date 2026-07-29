@@ -4,31 +4,32 @@
 
 ---
 
-## Table of Contents
+## 📋 Table of Contents 
 
-1. [How It Works — The Big Picture](#how-it-works--the-big-picture)
-2. [Application Walkthrough](#application-walkthrough)
-3. [Full Pathway #1 — Mouse Button Remapping](#full-pathway-1--mouse-button-remapping)
-4. [Full Pathway #2 — Dynamic Profile Switching](#full-pathway-2--dynamic-profile-switching)
-5. [Full Pathway #3 — Key Repeat Loop Thread](#full-pathway-3--key-repeat-loop-thread)
-6. [Example 1 — Mapping Shift to Mouse Button 4](#example-1--mapping-shift-to-mouse-button-4)
-7. [Example 2 — Cyclic Tab Browser Scrolling](#example-2--cyclic-tab-browser-scrolling)
-8. [Example 3 — Chord Hotkey Simulation](#example-3--chord-hotkey-simulation)
-9. [Example 4 — Repeating Keystroke Loop](#example-4--repeating-keystroke-loop)
-10. [Example 5 — Application Profile Creation](#example-5--application-profile-creation)
-11. [UI Guide — Dashboard](#ui-guide--dashboard)
-12. [UI Guide — Sliding Toggle CSS](#ui-guide--sliding-toggle-css)
-13. [System Tray Integration](#system-tray-integration)
-14. [HookManager — The Win32 Hook Pipeline](#hookmanager--the-win32-hook-pipeline)
-15. [Active Window Monitor Details](#active-window-monitor-details)
-16. [Autostart Registry Management](#autostart-registry-management)
-17. [Troubleshooting](#troubleshooting)
-18. [Packaging & Launch4j Execution](#packaging--launch4j-execution)
-19. [Project Summary](#project-summary)
+1. [🔄 How It Works — The Big Picture](#how-it-works)
+2. [🚀 Application Walkthrough](#application-walkthrough)
+3. [🖱️ Full Pathway #1 — Mouse Button Remapping](#mouse-button-remapping)
+4. [🎯 Full Pathway #2 — Dynamic Profile Switching](#dynamic-profile-switching)
+5. [🔁 Full Pathway #3 — Key Repeat Loop Thread](#key-repeat-loop-thread)
+6. [📝 Example 1 — Mapping Shift to Mouse Button 4](#example-1)
+7. [🔄 Example 2 — Cyclic Tab Browser Scrolling](#example-2)
+8. [⌨️ Example 3 — Chord Hotkey Simulation](#example-3)
+9. [🔁 Example 4 — Repeating Keystroke Loop](#example-4)
+10. [📁 Example 5 — Application Profile Creation](#example-5)
+11. [🎨 UI Guide — Dashboard](#ui-guide-dashboard)
+12. [🎨 UI Guide — Sliding Toggle CSS](#ui-guide-sliding-toggle-css)
+13. [📥 System Tray Integration](#system-tray-integration)
+14. [⚙️ HookManager — The Win32 Hook Pipeline](#hookmanager)
+15. [🖥️ Active Window Monitor Details](#active-window-monitor)
+16. [⚙️ Autostart Registry Management](#autostart-registry)
+17. [🛠️ Troubleshooting](#troubleshooting)
+18. [📦 Packaging & Launch4j Execution](#packaging-launch4j)
+19. [📋 Project Summary](#project-summary)
 
 ---
 
-## How It Works — The Big Picture
+<a id="how-it-works"></a>
+## 🔄 How It Works — The Big Picture
 
 ```mermaid
 flowchart LR
@@ -68,7 +69,8 @@ flowchart LR
 
 ---
 
-## Application Walkthrough
+<a id="application-walkthrough"></a>
+## 🚀 Application Walkthrough
 
 ### Starting MouseX
 
@@ -89,7 +91,8 @@ When you run MouseX (`App.java` or `MouseX.exe`), the following lifecycle occurs
 
 ---
 
-## Full Pathway #1 — Mouse Button Remapping
+<a id="mouse-button-remapping"></a>
+## 🖱️ Full Pathway #1 — Mouse Button Remapping
 
 ### Step 1: Physical Click Interception
 You click Mouse Button 4 (X1 / Back). The Windows OS creates a low-level mouse input event. JNA intercepts this in the Standard Call Callback hook proc:
@@ -114,7 +117,8 @@ Because `isChord` is true, MouseX executes the simulated keys together:
 
 ---
 
-## Full Pathway #2 — Dynamic Profile Switching
+<a id="dynamic-profile-switching"></a>
+## 🎯 Full Pathway #2 — Dynamic Profile Switching
 
 ### Step 1: Active Window Monitoring
 The `ActiveWindowMonitor` thread runs continuously in the background:
@@ -136,7 +140,8 @@ The monitor resolves the executable name of the active window:
 
 ---
 
-## Full Pathway #3 — Key Repeat Loop Thread
+<a id="key-repeat-loop-thread"></a>
+## 🔁 Full Pathway #3 — Key Repeat Loop Thread
 
 ### Step 1: Toggle or Hold Detection
 When a button is pressed and `repeatEnabled` is active:
@@ -160,7 +165,8 @@ This loop generates simulated keyboard events at the precise millisecond interva
 
 ---
 
-## Example 1 — Mapping Shift to Mouse Button 4
+<a id="example-1"></a>
+## 📝 Example 1 — Mapping Shift to Mouse Button 4
 
 Let's configure Mouse Button 4 to act as the Shift key:
 
@@ -173,7 +179,8 @@ Let's configure Mouse Button 4 to act as the Shift key:
 
 ---
 
-## Example 2 — Cyclic Tab Browser Scrolling
+<a id="example-2"></a>
+## 🔄 Example 2 — Cyclic Tab Browser Scrolling
 
 Remap the scroll wheel in web browsers to navigate tabs (`Tab` / `Shift+Tab`):
 
@@ -185,7 +192,8 @@ Remap the scroll wheel in web browsers to navigate tabs (`Tab` / `Shift+Tab`):
 
 ---
 
-## Example 3 — Chord Hotkey Simulation
+<a id="example-3"></a>
+## ⌨️ Example 3 — Chord Hotkey Simulation
 
 Map Middle Click to open the Task Manager shortcut (`Ctrl+Shift+Esc`):
 
@@ -198,7 +206,8 @@ Map Middle Click to open the Task Manager shortcut (`Ctrl+Shift+Esc`):
 
 ---
 
-## Example 4 — Repeating Keystroke Loop
+<a id="example-4"></a>
+## 🔁 Example 4 — Repeating Keystroke Loop
 
 Simulate clicking space bar 20 times a second (50ms interval) to jump in a game:
 
@@ -212,7 +221,8 @@ Simulate clicking space bar 20 times a second (50ms interval) to jump in a game:
 
 ---
 
-## Example 5 — Application Profile Creation
+<a id="example-5"></a>
+## 📁 Example 5 — Application Profile Creation
 
 Add a custom layout mapping specifically for Chrome:
 
@@ -224,7 +234,8 @@ Add a custom layout mapping specifically for Chrome:
 
 ---
 
-## UI Guide — Dashboard
+<a id="ui-guide-dashboard"></a>
+## 🎨 UI Guide — Dashboard
 
 The JavaFX interface is built on a VBox layout with three main sections:
 
@@ -246,7 +257,8 @@ A scroll pane displaying cards for the 7 remapping channels:
 
 ---
 
-## UI Guide — Sliding Toggle CSS
+<a id="ui-guide-sliding-toggle-css"></a>
+## 🎨 UI Guide — Sliding Toggle CSS
 
 All standard checkboxes in the application are customized in `styles.css` to render as modern physical sliding toggle switches.
 
@@ -270,7 +282,8 @@ All standard checkboxes in the application are customized in `styles.css` to ren
 
 ---
 
-## System Tray Integration
+<a id="system-tray-integration"></a>
+## 📥 System Tray Integration
 
 If `SystemTray.isSupported()` is true:
 - An instance of `java.awt.SystemTray` is created.
@@ -282,7 +295,8 @@ If `SystemTray.isSupported()` is true:
 
 ---
 
-## HookManager — The Win32 Hook Pipeline
+<a id="hookmanager"></a>
+## ⚙️ HookManager — The Win32 Hook Pipeline
 
 The low-level hook implementation uses Java Native Access to map standard Win32 variables and hooks:
 
@@ -315,7 +329,8 @@ JNA uses a custom `Structure` representing the `MSLLHOOKSTRUCT` layout in memory
 
 ---
 
-## Active Window Monitor Details
+<a id="active-window-monitor"></a>
+## 🖥️ Active Window Monitor Details
 
 Focus checking uses JNA to monitor foreground actions every 500ms:
 
@@ -330,7 +345,8 @@ This prevents system slowdowns by avoiding complex hooks, querying process metad
 
 ---
 
-## Autostart Registry Management
+<a id="autostart-registry"></a>
+## ⚙️ Autostart Registry Management
 
 Windows Registry auto-launch paths are set via JNA's `Advapi32Util`:
 
@@ -342,7 +358,8 @@ Windows Registry auto-launch paths are set via JNA's `Advapi32Util`:
 
 ---
 
-## Troubleshooting
+<a id="troubleshooting"></a>
+## 🛠️ Troubleshooting
 
 ### Native Hook Fails to Start
 - **Cause**: Standard user accounts are occasionally blocked from hooking low-level events if target windows run as Administrator.
@@ -358,10 +375,11 @@ Windows Registry auto-launch paths are set via JNA's `Advapi32Util`:
 
 ---
 
-## Packaging & Launch4j Execution
+<a id="packaging-launch4j"></a>
+## 📦 Packaging & Launch4j Execution
 
 > [!TIP]
-> Pre-built binaries are available! Users can download the compiled `MouseX.exe` directly from the [GitHub Releases](https://github.com/Felix-au/MouseX-Absolute-Mouse-Control/releases) page instead of packaging the application themselves.
+> Pre-built binaries are available! Users can download the compiled `MouseX.exe` directly from the [GitHub Releases](https://github.com/Felix-au/MouseX-Absolute-Mouse-Control/releases) page. Note that `MouseX.exe` is not a fully self-contained standalone executable; it requires a `jre` folder to be placed at the root of its directory (or a valid system Java runtime installation via `%JAVA_HOME%` or system path) to launch.
 
 To distribute MouseX as a standalone binary:
 
@@ -372,7 +390,7 @@ To distribute MouseX as a standalone binary:
    This packages all dependencies (including JNA libraries and GSON) into a single shaded JAR file.
 
 2. **Launch4j Configuration**:
-   The `MouseX.xml` configuration defines:
+   The [`package.xml`](package.xml) configuration template defines:
    - Outfile: `MouseX.exe`
    - Classpath / Shaded JAR: `target/mousex-1.0.0.jar`
    - Header type: `gui` (forces headless runtime, suppressing cmd windows)
@@ -380,16 +398,17 @@ To distribute MouseX as a standalone binary:
 
 ---
 
-## Project Summary
+<a id="project-summary"></a>
+## 📋 Project Summary
 
-| Class | Description |
+| Class / File | Description |
 |---|---|
-| `Main` | Shaded executable entry wrapper that calls `App.main` |
-| `App` | JavaFX GUI components, profile comboboxes, active window thread, system tray menu |
-| `HookManager` | Win32 mouse hook thread, callback processors, keyboard simulation |
-| `ConfigManager` | Serialization helper; saves and loads user mapping configurations |
-| `Autostart` | Registry management; registers/unregisters application boot commands |
-| `styles.css` | Custom dark-violet stylesheets and sliding toggle switches |
+| [`Main.java`](src/main/java/com/mouseremapper/Main.java) | Shaded executable entry wrapper that calls `App.main` |
+| [`App.java`](src/main/java/com/mouseremapper/App.java) | JavaFX GUI components, profile comboboxes, active window thread, system tray menu |
+| [`HookManager.java`](src/main/java/com/mouseremapper/HookManager.java) | Win32 mouse hook thread, callback processors, keyboard simulation |
+| [`ConfigManager.java`](src/main/java/com/mouseremapper/ConfigManager.java) | Serialization helper; saves and loads user mapping configurations |
+| [`Autostart.java`](src/main/java/com/mouseremapper/Autostart.java) | Registry management; registers/unregisters application boot commands |
+| [`styles.css`](src/main/resources/com/mouseremapper/styles.css) | Custom dark-violet stylesheets and sliding toggle switches |
 
 ---
 
