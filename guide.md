@@ -9,18 +9,18 @@ A local-first, low-level mouse-to-keyboard remapping utility for Windows. Config
 
 ### Option A — Download Pre-compiled Binary (Recommended)
 
-If you don't want to build from source, you can download `MouseX.exe` (v1.0.0) directly from the [GitHub Releases](https://github.com/Felix-au/MouseX-Absolute-Mouse-Control/releases) page.
+If you don't want to build from source, you can download [`MouseX.exe`](MouseX.exe) (v1.0.0) directly from the [GitHub Releases](https://github.com/Felix-au/MouseX-Absolute-Mouse-Control/releases) page. Note that `MouseX.exe` is not a fully self-contained standalone executable; it requires a `jre` folder to be placed at the root of its directory (or a valid system Java runtime installation via `%JAVA_HOME%` or system path) to launch.
 
 ### Option B — Run the Standalone EXE
 
-If you have built or downloaded `MouseX.exe`:
+If you have built or downloaded [`MouseX.exe`](MouseX.exe):
 
 ```
 Just double-click MouseX.exe
 ```
 
 > [!NOTE]
-> The EXE is a native wrapper generated using Launch4j. It loads settings from the local `profiles.json` and runs silently in the background, utilizing the system Java path mapped in `%JAVA_HOME%`.
+> The EXE is a native wrapper generated using Launch4j. It loads settings from the local [`profiles.json`](profiles.json) and runs silently in the background. It requires a `jre` folder placed at the root of its directory (or a valid system Java runtime installation via `%JAVA_HOME%` or system path) to run.
 
 ### Option C — From Source (Development)
 
@@ -119,10 +119,10 @@ Settings are saved in `profiles.json` located in the application's root director
 
 | File | Purpose |
 |---|---|
-| `src/main/java/com/mouseremapper/App.java` | Main JavaFX GUI, profile scanner, active window thread, system tray layout |
-| `src/main/java/com/mouseremapper/HookManager.java` | Native mouse hook processor and keyboard simulator |
-| `src/main/java/com/mouseremapper/ConfigManager.java` | Config file loader and GSON mapper |
-| `src/main/java/com/mouseremapper/Autostart.java` | Registry manipulation for autostart |
-| `src/main/resources/com/mouseremapper/styles.css` | Custom dark-theme QSS stylesheets |
-| `profiles.json` | Profile presets and layout rules |
-| `MouseX.xml` | Launch4j wrapper settings |
+| [`src/main/java/com/mouseremapper/App.java`](src/main/java/com/mouseremapper/App.java) | Main JavaFX GUI, profile scanner, active window thread, system tray layout |
+| [`src/main/java/com/mouseremapper/HookManager.java`](src/main/java/com/mouseremapper/HookManager.java) | Native mouse hook processor and keyboard simulator |
+| [`src/main/java/com/mouseremapper/ConfigManager.java`](src/main/java/com/mouseremapper/ConfigManager.java) | Config file loader and GSON mapper |
+| [`src/main/java/com/mouseremapper/Autostart.java`](src/main/java/com/mouseremapper/Autostart.java) | Registry manipulation for autostart |
+| [`src/main/resources/com/mouseremapper/styles.css`](src/main/resources/com/mouseremapper/styles.css) | Custom dark-theme QSS stylesheets |
+| [`profiles.json`](profiles.json) | Profile presets and layout rules |
+| [`package.xml`](package.xml) | Launch4j wrapper settings template |
