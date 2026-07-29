@@ -19,21 +19,21 @@
 
 ## 📋 Table of Contents
 
-- [Overview](#-overview)
-- [Why MouseX?](#-why-mousex)
-- [Features](#-features)
-- [Architecture](#-architecture)
-- [Pipeline Flow](#-pipeline-flow)
-- [Quick Start](#-quick-start)
-- [Build Standalone EXE](#-build-standalone-exe)
-- [Project Structure](#-project-structure)
-- [Dependencies](#-dependencies)
-- [Configuration](#-configuration)
-- [Roadmap](#-roadmap)
-- [Author](#-author)
+- [🔍 Overview](#overview)
+- [🎯 Why MouseX?](#why-mousex)
+- [✨ Features](#features)
+- [🏗️ Architecture](#architecture)
+- [🔄 Pipeline Flow](#pipeline-flow)
+- [🚀 Quick Start](#quick-start)
+- [📦 Build Standalone EXE](#build-standalone-exe)
+- [📁 Project Structure](#project-structure)
+- [📚 Dependencies](#dependencies)
+- [⚙️ Configuration](#configuration)
+- [👤 Author](#author)
 
 ---
 
+<a id="overview"></a>
 ## 🔍 Overview
 
 **MouseX** is a native Windows desktop utility built in Java 21 and JavaFX that lets you remap your mouse clicks, scrolls, and extra buttons to simulated keyboard inputs. By utilizing a low-level global Windows hook (`WH_MOUSE_LL`) via Java Native Access (JNA), MouseX intercepts mouse messages at the system level and routes them to virtual keyboard events, enabling mouse-driven shortcuts, rapid key-repeating macros, and complex chord combinations.
@@ -42,6 +42,7 @@ MouseX features an intelligent, background window-monitoring engine that dynamic
 
 ---
 
+<a id="why-mousex"></a>
 ## 🎯 Why MouseX?
 
 > **Standard mouse configuration software is often bloated, requires constant internet access, or lacks advanced key repeating options. MouseX is a lightweight, local-first remapper.**
@@ -56,6 +57,7 @@ MouseX features an intelligent, background window-monitoring engine that dynamic
 
 ---
 
+<a id="features"></a>
 ## ✨ Features
 
 ### 🖱️ Mouse Event Remapping
@@ -80,7 +82,7 @@ MouseX features an intelligent, background window-monitoring engine that dynamic
 | **Foreground Switcher** | Periodically checks foreground process names via Win32 `GetForegroundWindow` and automatically applies the matching profile |
 | **Auto Discovery** | Click `+` to scan currently running visible applications and generate a profile matching their executable name |
 | **Default Fallback** | Reverts to the "Default" profile when focusing on unmapped software or the desktop |
-| **JSON Profiles** | Save and load all mappings in a structured `profiles.json` layout |
+| **JSON Profiles** | Save and load all mappings in a structured [`profiles.json`](profiles.json) layout |
 
 ### 📦 System Tray & Autostart
 | Feature | Description |
@@ -98,7 +100,8 @@ MouseX features an intelligent, background window-monitoring engine that dynamic
 
 ---
 
-## 🏗 Architecture
+<a id="architecture"></a>
+## 🏗️ Architecture
 
 ```mermaid
 graph TD
@@ -181,6 +184,7 @@ graph TD
 
 ---
 
+<a id="pipeline-flow"></a>
 ## 🔄 Pipeline Flow
 
 ```mermaid
@@ -241,11 +245,12 @@ Simulate keypresses with JNA keybd_event (support chords or sequence lists)
 
 ---
 
+<a id="quick-start"></a>
 ## 🚀 Quick Start
 
 ### Option A — Download Pre-compiled Binary (Recommended)
 
-If you don't want to build from source, you can download `MouseX.exe` (v1.0.0) directly from the [GitHub Releases](https://github.com/Felix-au/MouseX-Absolute-Mouse-Control/releases) page and run it immediately on Windows.
+If you don't want to build from source, you can download `MouseX.exe` (v1.0.0) directly from the [GitHub Releases](https://github.com/Felix-au/MouseX-Absolute-Mouse-Control/releases) page. Note that `MouseX.exe` is not a fully self-contained standalone executable; it requires a `jre` folder to be placed at the root of its directory (or a valid system Java runtime installation via `%JAVA_HOME%` or system path) to launch.
 
 ### Option B — Build and Run from Source
 
@@ -267,7 +272,7 @@ If you don't want to build from source, you can download `MouseX.exe` (v1.0.0) d
    ```powershell
    mvn clean package
    ```
-   This compiles the source code, matches dependencies, and outputs a shaded JAR file: `target/mousex-1.0.0.jar`
+   This compiles the source code, matches dependencies, and outputs a shaded JAR file: [`target/mousex-1.0.0.jar`](target/mousex-1.0.0.jar)
 
 3. **Run the utility:**
    ```powershell
@@ -282,6 +287,7 @@ On launch:
 
 ---
 
+<a id="build-standalone-exe"></a>
 ## 📦 Build Standalone EXE
 
 You can package the application into a native Windows executable (`MouseX.exe`) using **Launch4j**:
@@ -290,47 +296,37 @@ You can package the application into a native Windows executable (`MouseX.exe`) 
    ```powershell
    mvn package
    ```
-2. Open Launch4j and load `MouseX.xml` configuration, or build via command line:
+2. Open Launch4j and load [package.xml](package.xml) configuration, or build via command line:
    ```powershell
-   launch4jc MouseX.xml
+   launch4jc package.xml
    ```
 3. The executable `MouseX.exe` is generated in the root directory.
 
 ---
 
+<a id="project-structure"></a>
 ## 📁 Project Structure
 
-```
-MouseX-Absolute-Mouse-Control/
-├── pom.xml                      # Maven build profile & dependencies
-├── dependency-reduced-pom.xml   # Shaded POM output
-├── MouseX.xml                   # Launch4j executable configuration
-├── MouseX.exe                   # Wrapped native GUI binary (build output)
-├── profiles.json                # User settings (keys, toggles, profile maps)
-├── LICENSE                      # MIT License
-├── .gitignore                   # Ignore target/ output, logs, local JSONs
-│
-└── src/
-    └── main/
-        ├── java/
-        │   └── com/
-        │       └── mouseremapper/
-        │           ├── Main.java         # Static main wrapper for packaging
-        │           ├── App.java          # JavaFX Controller and layout manager
-        │           ├── Autostart.java    # JNA Win32 startup registry manager
-        │           ├── ConfigManager.java# GSON-based profiles serializer
-        │           └── HookManager.java  # JNA WH_MOUSE_LL hook and keyboard simulator
-        │
-        └── resources/
-            ├── MouseX.png                # Window and dashboard logo
-            ├── MouseX.ico                # System tray icon file
-            └── com/
-                └── mouseremapper/
-                    └── styles.css        # QSS custom stylesheets
-```
+- [pom.xml](pom.xml) — Maven build profile & dependencies
+- [dependency-reduced-pom.xml](dependency-reduced-pom.xml) — Shaded POM output
+- [package.xml](package.xml) — Launch4j executable configuration template
+- `MouseX.xml` — Local Launch4j executable configuration (gitignored)
+- `MouseX.exe` — Wrapped native GUI binary (build output)
+- [profiles.json](profiles.json) — User settings (keys, toggles, profile maps)
+- [LICENSE](LICENSE) — MIT License
+- [.gitignore](.gitignore) — Git ignore list
+- [src/main/java/com/mouseremapper/Main.java](src/main/java/com/mouseremapper/Main.java) — Static main wrapper for packaging
+- [src/main/java/com/mouseremapper/App.java](src/main/java/com/mouseremapper/App.java) — JavaFX Controller and layout manager
+- [src/main/java/com/mouseremapper/Autostart.java](src/main/java/com/mouseremapper/Autostart.java) — JNA Win32 startup registry manager
+- [src/main/java/com/mouseremapper/ConfigManager.java](src/main/java/com/mouseremapper/ConfigManager.java) — GSON-based profiles serializer
+- [src/main/java/com/mouseremapper/HookManager.java](src/main/java/com/mouseremapper/HookManager.java) — JNA WH_MOUSE_LL hook and keyboard simulator
+- [src/main/resources/MouseX.png](src/main/resources/MouseX.png) — Window and dashboard logo
+- [src/main/resources/MouseX.ico](src/main/resources/MouseX.ico) — System tray icon file
+- [src/main/resources/com/mouseremapper/styles.css](src/main/resources/com/mouseremapper/styles.css) — Custom dark-theme QSS stylesheets
 
 ---
 
+<a id="dependencies"></a>
 ## 📚 Dependencies
 
 | Package | Purpose | Version |
@@ -343,9 +339,10 @@ MouseX-Absolute-Mouse-Control/
 
 ---
 
+<a id="configuration"></a>
 ## ⚙️ Configuration
 
-Profiles are automatically saved to `profiles.json` in the working directory:
+Profiles are automatically saved to [`profiles.json`](profiles.json) in the working directory:
 
 ```json
 {
@@ -382,12 +379,13 @@ Profiles are automatically saved to `profiles.json` in the working directory:
 
 ---
 
+<a id="author"></a>
 ## 👤 Author
 
 **Felix-au** (Harshit Soni)
 
 - 🔗 GitHub: [github.com/Felix-au](https://github.com/Felix-au)
-- 📧 Email: [harshit.soni.23cse@bmu.edu.in](mailto:harshit.soni.23cse@bmu.edu.in)
+- 📧 Email: [felixaugum@gmail.com](mailto:felixaugum@gmail.com)
 
 ---
 
