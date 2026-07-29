@@ -19,3 +19,6 @@ dependency-reduced-pom.xml
 # Executables and logs
 *.exe
 launch4j.log
+
+# Local launch4j config
+MouseX.xml
